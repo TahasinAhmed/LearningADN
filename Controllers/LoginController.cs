@@ -15,18 +15,18 @@ namespace Learning01ADN.Controllers
         {
             return View("Login");
         }
-        public string Login(UserModel userModel)
+        public ActionResult Login(UserModel userModel)
         {
             //return "Result: Username: " + userModel.UserName + " PW " + userModel.Password;
             SecurityService securityService = new SecurityService();
             Boolean sucess = securityService.Authenticate(userModel);
             if (sucess)
             {
-                return "Sucess";
+                return View("LoginSucess", userModel);
             }
             else
             {
-                return "Failed";
+                return View("LoginFailed");
             }
         }
     }
